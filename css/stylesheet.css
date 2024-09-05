@@ -26,34 +26,16 @@ body {
     font-family: 'Courier New', Courier, monospace;
 }
 
-#calculator-buttons {
-    display: flex;
-    flex-direction: column;
-    border-bottom-left-radius: 32px;
-    border-bottom-right-radius: 32px;
-}
-
-#calculator-buttons,
 #calculator-keys {
     display: flex;
     align-items: center;
+    justify-content: center;
     background-color: hsl(0, 0%, 15%);
     flex-wrap: wrap;
-    padding: 16px;
-}
-
-#calculator-keys {
+    padding: 32px;
+    border-bottom-left-radius: 32px;
+    border-bottom-right-radius: 32px;
     gap: 16px;
-}
-
-#clear-button {
-    width: 560px;
-    height: 128px;
-    background-color: hsl(0, 0%, 35%);
-    border: none;
-    border-radius: 64px;
-    font-size: 64px;
-    color: white;
 }
 
 .key {
