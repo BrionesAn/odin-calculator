@@ -188,3 +188,66 @@ keyBtns.forEach( (button) => {
         }
     });
 });
+
+window.addEventListener("keydown", function(event) {
+    console.log(event.key);
+    if (event.defaultPrevented) {
+        return;
+    }
+    switch (event.key) {
+        case "1":
+            digitPress("1");
+            break;
+        case "2":
+            digitPress("2");
+            break;
+        case "3":
+            digitPress("3");
+            break;
+        case "4":
+            digitPress("4");
+            break;
+        case "5":
+            digitPress("5");
+            break;
+        case "6":
+            digitPress("6");
+            break;
+        case "7":
+            digitPress("7");
+            break;
+        case "8":
+            digitPress("8");
+            break;
+        case "9":
+            digitPress("9");
+            break;
+        case "/":
+            operatorPress("/");
+            break;
+        case "x":
+        case "*":
+            operatorPress("*");
+            break;
+        case "-":
+            operatorPress("-");
+            break;
+        case "+":
+            operatorPress("+");
+            break;
+        case ".":
+            decimalPress();
+            break;
+        case "=":
+        case "Enter":
+            equalPress();
+            break;
+        case "Backspace":
+            backspacePress();
+            break;
+        case "Delete":
+            clearPress();
+            break;
+    }
+    event.preventDefault();
+}, true);
