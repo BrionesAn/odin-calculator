@@ -35,13 +35,12 @@ let operand1 = null;
 let operand2 = null;
 let operator1 = null;
 let operator2 = null;
+let decimalFlag = false;
 
 console.log(evaluate(operand1, operand2, operator1));
 
 const keyBtns = document.querySelectorAll(".key");
 const displayText = document.getElementById("display-text");
-
-displayText.innerText = "HI";
 
 function isOperatorNull() {
     if (operator1 == null) return true;
@@ -56,9 +55,9 @@ function updateDisplay(message) {
 }
 
 function divideByZeroChecker() {
-    if (operator1 === "/" && operand2 === 0) {
-        updateDisplay("You punk bitch...");
-        operand1, operand2, operator1, operator2 = null;
+    if (operator1 === "/" && operand2 == 0) {
+        updateDisplay("nah lmao");
+        operand1 = null, operand2 = null, operator1 = null, operator2 = null;
         return true;
     } else {
         return false;
@@ -78,6 +77,8 @@ keyBtns.forEach( (button) => {
             equalPress();
         } else if (button.classList.contains("backspace")) {
             backspacePress();
+        } else if (button.classList.contains("clear")) {
+            clearPress();
         }
     });
 });
@@ -145,11 +146,13 @@ function operatorPress(operator) {
             operand1 = evaluate(operand1, operand2, operator1);
             operator1 = operator;
             operand2 = null;
+            decimalFlag = false;
             updateDisplay(operand1);
         }
     // First operator
     } else if (isOperatorNull() && operand1 != null) {
         operator1 = operator;
+        decimalFlag = false;
     }
 }
 
@@ -170,6 +173,26 @@ If decimal is pressed
             Display operand2
     decimalFlag = true
         Do nothing
+
+*/
+
+function decimalPress() {
+    if (!decimalFlag) {
+        if (isOperatorNull()) {
+            if (operand1 == null) operand1 = ".";
+            else operand1 += ".";
+            decimalFlag = true;
+            updateDisplay(operand1);
+        } else {
+            if (operand2 == null) operand2 = ".";
+            else operand2 += ".";
+            decimalFlag = true;
+            updateDisplay(operand2);
+        }
+    }
+}
+
+/*
 
 If equals is pressed
     Check if a valid equation has been input
@@ -197,12 +220,12 @@ function equalPress() {
     if (operand1 != null && operand2 != null && operator1 != null) {
         if (!divideByZeroChecker()) {
             updateDisplay(evaluate(operand1, operand2, operator1));
-            operand1 = null, operand2 = null, operator1 = null, operator2 = null;
+            operand1 = null, operand2 = null, operator1 = null, operator2 = null, decimalFlag = false;
         }
     } else if (operand1 != null && operator1 != null && operand2 == null) {
         operand2 = operand1;
         updateDisplay(evaluate(operand1, operand2, operator1));
-        operand1 = null, operand2 = null, operator1 = null, operator2 = null;
+        operand1 = null, operand2 = null, operator1 = null, operator2 = null, decimalFlag = false;
     }
 }
 
@@ -221,3 +244,37 @@ If backspace is pressed
         Do nothing
 */
 
+function backspacePress() {
+    if (operator2 != null) {
+        operator2 = null;
+    } else if (operand2 != null) {
+        if (operand2 ==  "") {
+            operand2 = null;
+        } else if (typeof operand2 === 'number') {
+            // Do nothing
+        } else {
+            operand2 = operand2.slice(0, -1);
+            updateDisplay(operand2);
+        }
+    } else if (operator1 != null) {
+        operator1 = null;
+    } else if (operand1 != null) {
+        if (operand1 ==  "") {
+            operand1 = null;
+        } else if (typeof operand1 === 'number') {
+            // Do nothing
+        } else {
+            operand1 = operand1.slice(0, -1);
+            updateDisplay(operand1);
+        }
+    }
+}
+
+function clearPress() {
+    operand1 = null;
+    operand2 = null;
+    operator1 = null;
+    operator2 = null;
+    decimalFlag = false;
+    updateDisplay("");
+}

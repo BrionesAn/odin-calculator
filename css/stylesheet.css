@@ -52,8 +52,7 @@ body {
     background-color: hsl(27, 100%, 50%);
 }
 
-button:hover.key,
-button:hover#clear-button {
+button:hover.key {
     background-color: hsl(0, 0%, 45%);
 }
 
@@ -61,8 +60,7 @@ button:hover.operator {
     background-color: hsl(27, 100%, 60%);
 }
 
-button:active.key,
-button:active#clear-button {
+button:active.key {
     background-color: hsl(0, 0%, 55%);
 }
 
