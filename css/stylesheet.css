@@ -9,12 +9,13 @@ body {
     display: flex;
     flex-direction: column;
     width: 624px;
+    flex-shrink: 0;
 }
 
 #display {
     display: flex;
     background-color: hsl(0, 0%, 20%);
-    height: 128px;
+    height: 192px;
     border: none;
     border-top-left-radius: 32px;
     border-top-right-radius: 32px;
